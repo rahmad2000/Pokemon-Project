@@ -11,15 +11,14 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <% @pokemons.each do |pokemon| %>
-      <div class="card bg-white p-6 rounded-lg shadow-lg">
+      <%= link_to pokemon_path(pokemon), class: "card bg-white p-6 rounded-lg shadow-lg block hover:bg-gray-100" do %>
         <% if user_signed_in? %>
-          <%= link_to pokemon.name, pokemon, class: "text-blue-500 hover:text-blue-700" %>
-          <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
+          <span class="text-blue-500 hover:text-blue-700 font-bold"><%= pokemon.name.capitalize %></span>
         <% else %>
-          <span class="text-gray-700"><%= pokemon.name %></span>
-          <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
+          <span class="text-gray-700 font-bold"><%= pokemon.name.capitalize %></span>
         <% end %>
-      </div>
+        <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
+      <% end %>
     <% end %>
   </div>
 
