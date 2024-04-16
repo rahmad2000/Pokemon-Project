@@ -1,4 +1,6 @@
 class PokemonsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @search_performed = params[:search].present?
     base_query = Pokemon.joins(:types, :abilities)

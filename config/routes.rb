@@ -9,5 +9,8 @@ Rails.application.routes.draw do
 
   get '/about', to: 'about#show', as: 'about'
 
-  # Additional routes can be added below as needed
+  devise_scope :user do
+    get "/users/sign_out" => "devise/sessions#destroy"
+  end
+
 end
