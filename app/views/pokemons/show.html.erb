@@ -1,9 +1,7 @@
-<!-- app/views/pokemons/show.html.erb -->
 <div class="container mx-auto my-6">
   <div class="bg-white p-6 rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold mb-4"><%= @pokemon.name.capitalize %></h1>
     <%= image_tag @pokemon.url, alt: @pokemon.name, class: "pokemon-image mx-auto mb-4" if @pokemon.url.present? %>
-
 
     <div class="mb-4">
       <p class="text-gray-700"><strong>Height:</strong> <%= @pokemon.height %></p>
@@ -16,7 +14,7 @@
     <div>
       <h2 class="text-2xl font-bold">Pokemon Types:</h2>
       <% @pokemon.types.uniq.each do |type| %>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= type.name.capitalize %></span>
+        <%= link_to type.name.capitalize, type_path(type), class: "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" %>
       <% end %>
     </div>
 
@@ -24,7 +22,7 @@
       <h2 class="text-2xl font-bold">Pokemon Abilities:</h2>
       <% @pokemon.abilities.each do |ability| %>
         <div class="mb-2">
-          <span class="inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2"><%= ability.name.capitalize %></span>
+          <%= link_to ability.name.capitalize, ability_path(ability), class: "inline-block bg-blue-200 rounded-full px-3 py-1 text-sm font-semibold text-blue-700 mr-2" %>
           <p class="text-gray-600"><%= ability.description %></p>
         </div>
       <% end %>
