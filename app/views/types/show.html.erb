@@ -1,0 +1,14 @@
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-3xl font-bold text-center mb-6">Type: <%= @type.name.titleize %></h1>
+  <h2 class="text-xl font-semibold mb-4">Pokemons with this Type:</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <% @type.pokemons.each do |pokemon| %>
+      <div class="bg-white rounded-lg shadow-lg p-4 flex items-center justify-between">
+        <%= link_to pokemon.name.titleize, pokemon_path(pokemon), class: "text-lg font-semibold text-blue-600 hover:text-blue-800" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="text-center mt-8">
+    <%= link_to 'Back to Types', types_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>
