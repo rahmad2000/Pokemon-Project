@@ -5,28 +5,26 @@
     <div class="flex space-x-2">
       <%= form.label :search, "Search for a Pokemon", class: "sr-only" %>
       <%= form.text_field :search, value: params[:search], placeholder: "Search for a Pokemon", class: "form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+
+      <%= form.label :type_id, "Filter by Type", class: "sr-only" %>
+      <%= form.collection_select :type_id, Type.all, :id, :name, include_blank: "Any Type", class: "form-select mt-1 block w-full rounded-md border-gray-300 shadow-sm" %>
+
       <%= form.submit "Search", class: "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300" %>
     </div>
   <% end %>
 
-  <% if @no_results %>
-    <div class="alert alert-warning" role="alert">
-      Pokemon Doesn't Exist! Please Check the Name.
-    </div>
-  <% else %>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <% @pokemons.each do |pokemon| %>
-        <%= link_to pokemon_path(pokemon), class: "card bg-white p-6 rounded-lg shadow-lg block hover:bg-gray-100" do %>
-          <% if user_signed_in? %>
-            <span class="text-blue-500 hover:text-blue-700 font-bold"><%= pokemon.name.capitalize %></span>
-          <% else %>
-            <span class="text-gray-700 font-bold"><%= pokemon.name.capitalize %></span>
-          <% end %>
-          <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <% @pokemons.each do |pokemon| %>
+      <%= link_to pokemon_path(pokemon), class: "card bg-white p-6 rounded-lg shadow-lg block hover:bg-gray-100" do %>
+        <% if user_signed_in? %>
+          <span class="text-blue-500 hover:text-blue-700 font-bold"><%= pokemon.name.titleize %></span>
+        <% else %>
+          <span class="text-gray-700 font-bold"><%= pokemon.name.titleize %></span>
         <% end %>
+        <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <div class="my-8">
     <%= paginate @pokemons, window: 2, outer_window: 0, class: 'flex justify-center space-x-1' %>

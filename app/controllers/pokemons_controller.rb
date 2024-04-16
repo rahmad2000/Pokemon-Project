@@ -6,13 +6,19 @@ class PokemonsController < ApplicationController
                         .where.not(url: [nil, ''])
                         .distinct
 
+    # Apply name search if provided
     if @search_performed
       base_query = base_query.where('pokemons.name LIKE ?', "%#{params[:search]}%")
     end
 
+    # Apply type filter if provided
+    if params[:type_id].present?
+      base_query = base_query.joins(:types).where(types: { id: params[:type_id] })
+    end
+
     @pokemons = base_query.page(params[:page])
 
-    # Using @pokemons.empty? will check if the query returned results
+    # Check if the results are empty after applying search and/or filter
     @no_results = @pokemons.empty? && @search_performed
   end
 
@@ -23,6 +29,6 @@ class PokemonsController < ApplicationController
   private
 
   def pokemon_params
-    params.require(:pokemon).permit(:name, :height, :weight, :evolves_from, :url, :generation)
+    params.require(:pokemon).permit(:name, :height, :weight, :evolves_from, :url, :generation, :type_id)
   end
 end
