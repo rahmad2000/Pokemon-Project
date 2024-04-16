@@ -41,3 +41,7 @@ cd ..
 
 and:
 bin/dev
+
+One of the User:
+James@example.com
+james123

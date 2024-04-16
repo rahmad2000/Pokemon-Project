@@ -7,8 +7,16 @@
   </p>
 
   <p class="mb-4 text-gray-700">
-    The information on this site is collected from various data sources and compiled into a relational database 
-    to provide a comprehensive overview of each Pokémon and their characteristics.
+    The information on this site is compiled from various data sources and integrated into a relational database 
+    to provide a comprehensive overview of each Pokémon and their characteristics. The database is populated using the Pokémon API across three main tables: Pokémon, Types, and Abilities.
+  </p>
+
+  <p class="mb-4 text-gray-700">
+    Pokémon may have multiple types and abilities, creating many-to-many relationships through associative tables. This allows for querying Pokémon based on their type and listing abilities associated with each Pokémon.
+  </p>
+
+  <p class="mb-4 text-gray-700">
+    To populate the Pokémon table, I utilize the 'pokemon', 'pokemon-species', and 'generation' endpoints. The 'type' endpoint populates the Types table, and the 'ability' endpoint is used for the Abilities table.
   </p>
 
   <%# Optionally include your ERD if you have uploaded the image to your assets %>
@@ -18,4 +26,30 @@
       <%= image_tag('PokemonProject ERD.png', alt: 'Entity-Relationship Diagram', class: "mx-auto") %>
     </div>
   <% end %>
+  
+  <h4 class="text-lg font-bold my-4">Data Source Endpoints</h4>
+  <div class="mb-4 text-gray-700">
+    <h5>Table: Pokémon</h5>
+    <ul>
+      <li>name, height, weight, url: <a href="https://pokeapi.co/api/v2/pokemon?limit=300" class="text-blue-500">Pokémon API - Pokémon</a></li>
+      <li>color, evolves_from, generation: <a href="https://pokeapi.co/api/v2/pokemon-species/{name}" class="text-blue-500">Pokémon API - Pokémon Species</a></li>
+    </ul>
+
+    <h5>Table: Types</h5>
+    <ul>
+      <li>name: <a href="https://pokeapi.co/api/v2/type?limit=50" class="text-blue-500">Pokémon API - Type</a></li>
+    </ul>
+
+    <h5>Table: Abilities</h5>
+    <ul>
+      <li>name, description: <a href="https://pokeapi.co/api/v2/ability?limit=300" class="text-blue-500">Pokémon API - Ability</a></li>
+    </ul>
+
+    <h5>Associative Tables</h5>
+    <p>Pokemons_Types and Abilities_Pokemons</p>
+    <ul>
+      <li>type_name (types), pokemon_name (pokemon)</li>
+      <li>ability_name (ability), pokemon_name (pokemon)</li>
+    </ul>
+  </div>
 </div>
