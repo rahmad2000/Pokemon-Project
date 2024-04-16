@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ .pokemon-image {
+    width: 292px;
+    height: 292px;
+    object-fit: cover;
+    border-radius: 50%;
+}
