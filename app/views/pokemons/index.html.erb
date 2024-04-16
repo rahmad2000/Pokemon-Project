@@ -9,21 +9,24 @@
     </div>
   <% end %>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <% @pokemons.each do |pokemon| %>
-      <%= link_to pokemon_path(pokemon), class: "card bg-white p-6 rounded-lg shadow-lg block hover:bg-gray-100" do %>
-        <% if user_signed_in? %>
-          <span class="text-blue-500 hover:text-blue-700 font-bold"><%= pokemon.name.capitalize %></span>
-        <% else %>
-          <span class="text-gray-700 font-bold"><%= pokemon.name.capitalize %></span>
+  <% if @no_results %>
+    <div class="alert alert-warning" role="alert">
+      Pokemon Doesn't Exist! Please Check the Name.
+    </div>
+  <% else %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <% @pokemons.each do |pokemon| %>
+        <%= link_to pokemon_path(pokemon), class: "card bg-white p-6 rounded-lg shadow-lg block hover:bg-gray-100" do %>
+          <% if user_signed_in? %>
+            <span class="text-blue-500 hover:text-blue-700 font-bold"><%= pokemon.name.capitalize %></span>
+          <% else %>
+            <span class="text-gray-700 font-bold"><%= pokemon.name.capitalize %></span>
+          <% end %>
+          <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
         <% end %>
-        <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
       <% end %>
-    <% end %>
-    <% if @pokemons.empty? %>
-      <p>No Pokémon found.</p>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
   <div class="my-8">
     <%= paginate @pokemons, window: 2, outer_window: 0, class: 'flex justify-center space-x-1' %>
