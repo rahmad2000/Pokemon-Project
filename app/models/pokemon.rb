@@ -6,5 +6,13 @@ class Pokemon < ApplicationRecord
 
   # Validations
   validates :name, :height, :weight, :color, :generation, presence: true
-  
+
+  def self.search(search_term)
+    if search_term
+      where('name LIKE ?', "%#{search_term}%")
+    else
+      all
+    end
+  end
+
 end

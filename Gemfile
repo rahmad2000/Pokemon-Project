@@ -70,3 +70,4 @@ end
 gem 'devise'
 gem 'kaminari'
 gem 'tailwindcss-rails'
+gem 'webpacker'

@@ -1,0 +1,20 @@
+<nav class="bg-gray-800 p-4 text-white">
+  <div class="container mx-auto flex justify-between">
+    <ul class="flex space-x-4">
+      <li><%= link_to "Pokemon", root_path, class: "hover:text-gray-300" %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Abilities", abilities_path, class: "hover:text-gray-300" %></li>
+        <li><%= link_to "Types", types_path, class: "hover:text-gray-300" %></li>
+      <% end %>
+      <li><%= link_to "About", about_path, class: "hover:text-gray-300" %></li>
+    </ul>
+    <% if user_signed_in? %>
+      <div>
+        <span>You are logged in as: <%= current_user.email %></span>
+        <%= link_to ' Sign out', destroy_user_session_path, method: :delete, class: "ml-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
+  </div>
+</nav>

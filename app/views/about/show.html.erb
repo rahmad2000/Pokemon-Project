@@ -1,0 +1,21 @@
+<div class="container mx-auto my-6">
+  <h1 class="text-2xl font-bold mb-6">About</h1>
+  
+  <p class="mb-4 text-gray-700">
+    This web application is a repository of Pokémon data, including types and abilities. 
+    Data is organized according to an Entity-Relationship Diagram (ERD) that models the relationships between Pokémon, their types, and abilities.
+  </p>
+
+  <p class="mb-4 text-gray-700">
+    The information on this site is collected from various data sources and compiled into a relational database 
+    to provide a comprehensive overview of each Pokémon and their characteristics.
+  </p>
+
+  <%# Optionally include your ERD if you have uploaded the image to your assets %>
+  <% if Rails.application.assets_manifest.find_sources('PokemonProject ERD.png').any? %>
+    <div class="text-center">
+      <h2 class="text-xl font-bold my-4">Entity-Relationship Diagram (ERD)</h2>
+      <%= image_tag('PokemonProject ERD.png', alt: 'Entity-Relationship Diagram', class: "mx-auto") %>
+    </div>
+  <% end %>
+</div>
