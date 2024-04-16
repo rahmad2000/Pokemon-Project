@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  height: 1
+  weight: 1
+  color: MyString
+  evolves_from: MyString
+  generation: MyString
+  url: MyString
+
+two:
+  name: MyString
+  height: 1
+  weight: 1
+  color: MyString
+  evolves_from: MyString
+  generation: MyString
+  url: MyString
