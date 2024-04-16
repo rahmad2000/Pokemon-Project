@@ -19,3 +19,9 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+.pokemon-logo {
+    width: 52px;
+    height: 52px;
+    padding: auto;
+}
