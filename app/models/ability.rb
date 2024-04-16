@@ -3,5 +3,6 @@ class Ability < ApplicationRecord
   has_many :pokemons, through: :abilities_pokemons
 
   # Validations
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true
+  validates :description, presence: true
 end
