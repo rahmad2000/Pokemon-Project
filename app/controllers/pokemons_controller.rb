@@ -1,5 +1,4 @@
 class PokemonsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @search_performed = params[:search].present?
@@ -26,6 +25,10 @@ class PokemonsController < ApplicationController
 
   def show
     @pokemon = Pokemon.find(params[:id])
+    unless user_signed_in?
+      flash[:alert] = "You need to sign in to view this page."
+      redirect_to new_user_session_path
+    end
   end
 
   private
