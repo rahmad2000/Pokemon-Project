@@ -1,6 +1,18 @@
 class PokemonsController < ApplicationController
   def index
-    @pokemons = Pokemon.search(params[:search]).page(params[:page])
+    base_query = Pokemon.joins(:types, :abilities)
+                        .where.not(types: { id: nil }, abilities: { id: nil })  # Ensure Pokemon has types and abilities
+                        .where.not(url: [nil, ''])  # Ensure image url is present
+                        .distinct
+
+    if params[:search].present?
+      @pokemons = base_query.where('name LIKE ?', "%#{params[:search]}%")
+    else
+      @pokemons = base_query
+    end
+
+    @pokemons = @pokemons.page(params[:page])  # Apply pagination if necessary
+    @pokemons = @pokemons.presence || []  # Ensures @pokemons is always an array
   end
 
   def show

@@ -20,6 +20,9 @@
         <%= image_tag pokemon.url, class: "w-full h-auto mt-2" unless pokemon.url.blank? %>
       <% end %>
     <% end %>
+    <% if @pokemons.empty? %>
+      <p>No Pokémon found.</p>
+    <% end %>
   </div>
 
   <div class="my-8">
